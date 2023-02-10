@@ -1,22 +1,39 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { changeValue, decrease, increase } from '../../store/cartSlice'
 import './style.scss'
 
-export const Count = ({count, increase, id, decrease, changeValue}) => {
+export const Count = ({count, id}) => {
+
+  const dispatch = useDispatch()
+
+  const increaseProduct = () => {
+    dispatch(increase({id}))
+  }
+
+  const decreaseProduct = () => {
+    dispatch(decrease({id}))
+  }
+
+  const changeValueProduct = (e) => {
+    dispatch(changeValue({id, value: e}))
+  }
+
   return (
     <div className="count">
       <div className="count__box">
-        <input onChange={(e) => changeValue(id, +e.target.value)} type="number" className="count__input" min="1" max="100" value={count} />
+        <input onChange={(e) => changeValueProduct(+e.target.value)} type="number" className="count__input" min="1" max="100" value={count} />
       </div>
       <div className="count__controls">
         <button 
-          onClick={() => increase(id)}
+          onClick={increaseProduct}
           type="button" 
           className="count__up"
         >
           <img src="./img/icons/icon-up.svg" alt="Increase" />
         </button>
         <button 
-          onClick={() => decrease(id)}
+          onClick={decreaseProduct}
           type="button" 
           className="count__down"
         >
