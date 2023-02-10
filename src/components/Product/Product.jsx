@@ -4,7 +4,7 @@ import { Count } from '../Count/Count'
 import './style.scss'
 import priceFormatter from '../../utils/priceFormatter'
 
-export const Product = ({product, deleteProduct, increase, decrease, changeValue}) => {
+export const Product = ({product,increase}) => {
 
   const {img, title, priceTotal, count, id} = product
 
@@ -18,10 +18,7 @@ export const Product = ({product, deleteProduct, increase, decrease, changeValue
 
         <Count
           count={count}
-          increase={increase}
-          decrease={decrease}
           id={id}
-          changeValue={changeValue}
         />
 
       </div>
@@ -31,7 +28,6 @@ export const Product = ({product, deleteProduct, increase, decrease, changeValue
       <div className="product__controls">
 
         <ButtonDelete 
-          deleteProduct={deleteProduct}
           id={id}
         />
 

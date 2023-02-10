@@ -1,9 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { deleteProduct } from '../../store/cartSlice'
 import './style.scss'
 
-export const ButtonDelete = ({deleteProduct, id}) => {
+export const ButtonDelete = (id) => {
+
+  const dispatch = useDispatch()
+
+  const removeProduct = () => {
+    dispatch(deleteProduct(id))
+  }
+
   return (
-    <button onClick={() => deleteProduct(id)} type="button">
+    <button onClick={removeProduct} type="button">
       <img src="./img/icons/cross.svg" alt="Delete" />
     </button>
   )
